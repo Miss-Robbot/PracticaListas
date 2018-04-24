@@ -46,9 +46,6 @@ public class Datos {
 		this.pilaDos = pilaDos;
 	}
 
-	/**
-	 * coge las dos pilas y las deja del mismo tamaño
-	 */
 	public void EquilibrarPila() {
 
 	}
