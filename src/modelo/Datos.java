@@ -56,19 +56,19 @@ public class Datos {
 	
 	public Colores sortearColor(ArrayList<Colores> repetidos) {
 		boolean salir= true;
-		int index=0;
+		int i=0;
 		do{
-			index = (int) (Math.random()*(Colores.getCantidadElementos()-1))+1;
+			i = (int) (Math.random()*(Colores.getCantidadElementos()-1))+1;
 			
 			salir=true;
 			for (int i = 0; i < repetidos.size(); i++) {
-				if(Colores.getElement(index).equals(repetidos.get(i))){
+				if(Colores.getElement(i).equals(repetidos.get(i))){
 					salir= false;
 				}
 			}
 			
 		}while(!salir);
 	
-		return Colores.values()[index];//k
+		return Colores.values()[i];//k
 	}
 }
