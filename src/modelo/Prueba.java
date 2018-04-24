@@ -28,10 +28,10 @@ public class Prueba {
 		Datos datos= new Datos();
 		ArrayList<Colores> repetidos= new ArrayList<Colores>();
 		repetidos.add(Colores.azul);
-		repetidos.add(Colores.azul);
-		for (int i = 0; i < 100; i++) {
-		//	sortearColor(repetidos);
-		}
+		repetidos.add(Colores.rojo);
+		System.out.println(datos.sortearColor(repetidos));
+			
+		
 		
 
 	}
