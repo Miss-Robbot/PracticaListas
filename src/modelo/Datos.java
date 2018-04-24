@@ -72,6 +72,6 @@ public class Datos {
 			
 		}while(!salir);
 	
-		return Colores.values()[index];
+		return Colores.values()[index];//k
 	}
 }
