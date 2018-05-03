@@ -30,7 +30,7 @@ public class ParaPracticaListaUI extends vistaUI {
 
 		vistaUno.setVisible(true);
 		vistaDos.setVisible(false);
-		JLabel temporalLabel = new JLabel();
+		//JLabel temporalLabel = new JLabel();
 		
 	
 
@@ -42,6 +42,7 @@ public class ParaPracticaListaUI extends vistaUI {
 				vistaUno.setVisible(false);
 
 				acciones.crearColaJlabel(vistaDos.getCogerCentro().getCogerCola());
+				acciones.crearPilas(vistaDos.getCogerCentro().getCogerPilaUno(), vistaDos.getCogerCentro().getCogerPilaDos());
 			}
 		});
 

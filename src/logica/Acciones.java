@@ -131,35 +131,55 @@ public class Acciones implements Accionable{
 			dato.getPilaDos().apilar(color);
 	}
 	
+	public void crearPilas(JPanel pilaUno, JPanel pilaDos){
+		int comienzo=0;
+		pilaUno.setBackground(new Color(254, 254, 254));
+		pilaDos.setBackground(new Color(254, 254, 254));
+			for (int i = 0; i < Constantes.tamanioPilaUno; i++) {
+				JLabel etiqueta= new JLabel();
+				etiqueta.setBounds(comienzo,0,Constantes.separacionEtiquetasPilaUno,35);
+				comienzo+=Constantes.separacionEtiquetasPilaUno;
+				etiqueta.setName(""+i);
+				etiqueta.setVisible(false);
+				//etiqueta.setBackground(Color.blue);
+				etiqueta.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+				etiqueta.setOpaque(true);
+				pilaUno.add(etiqueta);
+			}
+		
+		comienzo=0;
+		for (int i = 0; i < Constantes.tamanioPilaDos; i++) {
+			JLabel etiqueta= new JLabel();
+			etiqueta.setBounds(comienzo,0,Constantes.separacionEtiquetasPilaDos,35);
+			comienzo+=Constantes.separacionEtiquetasPilaDos;
+			etiqueta.setName(""+i);
+			etiqueta.setVisible(false);
+			//etiqueta.setBackground(Color.red);
+			etiqueta.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+			etiqueta.setOpaque(true);
+			pilaDos.add(etiqueta);
+		}
+	
+	}
 	public void pintarPilas(JPanel pilaUno, JPanel pilaDos){
 		pilaUno.removeAll();
 		pilaDos.removeAll();
 		int comienzo=0;
 		if(dato.getPilaUno().getPila().size()>0){
 			for (int i = 0; i < dato.getPilaUno().getPila().size(); i++) {
-				JLabel etiqueta= new JLabel();
-				etiqueta.setBounds(comienzo,0,Constantes.separacionEtiquetasPilaUno,35);
-				comienzo+=Constantes.separacionEtiquetasPilaUno;
-				etiqueta.setName(""+i);
+				JLabel etiqueta=(JLabel)pilaUno.getComponent(i);
 				etiqueta.setVisible(true);
 				etiqueta.setBackground(dato.getPilaUno().getPila().get(i).getColor());
-				etiqueta.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 				etiqueta.setOpaque(true);
-				pilaUno.add(etiqueta);
 			}
 		}
 		if(dato.getPilaDos().getPila().size()>0){
 		comienzo=0;
 		for (int i = 0; i < dato.getPilaDos().getPila().size(); i++) {
-			JLabel etiqueta= new JLabel();
-			etiqueta.setBounds(comienzo,0,Constantes.separacionEtiquetasPilaDos,35);
-			comienzo+=Constantes.separacionEtiquetasPilaDos;
-			etiqueta.setName(""+i);
+			JLabel etiqueta=(JLabel)pilaDos.getComponent(i);
 			etiqueta.setVisible(true);
 			etiqueta.setBackground(dato.getPilaDos().getPila().get(i).getColor());
-			etiqueta.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 			etiqueta.setOpaque(true);
-			pilaUno.add(etiqueta);
 		}
 		}
 	}
