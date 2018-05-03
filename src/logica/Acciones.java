@@ -93,6 +93,10 @@ public class Acciones implements Accionable{
 		this.dato = dato;
 	}
 	
+	/**
+	 * Coge la cola de los datos y la pinta en la vista
+	 * @param panelito
+	 */
 	public void crearColaJlabel(JPanel panelito){
 		panelito.removeAll();
 		int comienzo=0;
@@ -106,6 +110,57 @@ public class Acciones implements Accionable{
 			etiqueta.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 			etiqueta.setOpaque(true);
 			panelito.add(etiqueta);
+		}
+	}
+	
+	public void pintarCola(JPanel panelito){
+		for (int i = 0; i < Constantes.tamanioCola; i++) {
+			panelito.getComponent(i).setBackground(dato.getCola().getCola().get(i).getColor());
+		}
+	}
+	
+	/**
+	 * Para meter el color que sale de la cola en una pila al azar
+	 * @param color
+	 */
+	public void entrarColorPila(Colores color){
+		int aleatorio= (int)(Math.random()*2);
+		if(aleatorio==0)
+			dato.getPilaUno().apilar(color);
+		else
+			dato.getPilaDos().apilar(color);
+	}
+	
+	public void pintarPilas(JPanel pilaUno, JPanel pilaDos){
+		pilaUno.removeAll();
+		pilaDos.removeAll();
+		int comienzo=0;
+		if(dato.getPilaUno().getPila().size()>0){
+			for (int i = 0; i < dato.getPilaUno().getPila().size(); i++) {
+				JLabel etiqueta= new JLabel();
+				etiqueta.setBounds(comienzo,0,Constantes.separacionEtiquetasPilaUno,35);
+				comienzo+=Constantes.separacionEtiquetasPilaUno;
+				etiqueta.setName(""+i);
+				etiqueta.setVisible(true);
+				etiqueta.setBackground(dato.getPilaUno().getPila().get(i).getColor());
+				etiqueta.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+				etiqueta.setOpaque(true);
+				pilaUno.add(etiqueta);
+			}
+		}
+		if(dato.getPilaDos().getPila().size()>0){
+		comienzo=0;
+		for (int i = 0; i < dato.getPilaDos().getPila().size(); i++) {
+			JLabel etiqueta= new JLabel();
+			etiqueta.setBounds(comienzo,0,Constantes.separacionEtiquetasPilaDos,35);
+			comienzo+=Constantes.separacionEtiquetasPilaDos;
+			etiqueta.setName(""+i);
+			etiqueta.setVisible(true);
+			etiqueta.setBackground(dato.getPilaDos().getPila().get(i).getColor());
+			etiqueta.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+			etiqueta.setOpaque(true);
+			pilaUno.add(etiqueta);
+		}
 		}
 	}
 

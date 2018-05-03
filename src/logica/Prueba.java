@@ -1,5 +1,6 @@
 package logica;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -50,6 +51,11 @@ public class Prueba {
 		
 		/*Datos datos= new Datos();
 		System.out.println(datos.getCola().getCola().toString());*/
+		
+		Acciones acciones= new Acciones();
+		acciones.entrarColorPila(Colores.verde);
+		System.out.println(acciones.getDato().getPilaUno().getPila());
+		System.out.println(acciones.getDato().getPilaDos().getPila());
 	
 	}
 	

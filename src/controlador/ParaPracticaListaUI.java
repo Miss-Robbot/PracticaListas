@@ -50,8 +50,8 @@ public class ParaPracticaListaUI extends vistaUI {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				slctColor.setVisible(true);
-				slctColor.getCogerComboBox().setModel(new DefaultComboBoxModel(acciones.colorSeleccionVista(
-							acciones.seleccionarColor(repetidos, ronda))));
+				//slctColor.getCogerComboBox().setModel(new DefaultComboBoxModel(acciones.colorSeleccionVista(
+				//acciones.seleccionarColor(repetidos, ronda))));
 				
 				
 				
@@ -80,14 +80,13 @@ public class ParaPracticaListaUI extends vistaUI {
 					public void actionPerformed(ActionEvent e) {
 
 						Colores colorParcial = (Colores) cogerComboBox.getSelectedItem();
-						temporalLabel.setBounds(0, 0, 30, 30);
-						temporalLabel.setOpaque(true);
-						temporalLabel.setVisible(true);
-						temporalLabel.setBackground(colorParcial.getColor());
-						vistaDos.getCogerCentro().getCogerPilaUno().add(temporalLabel);
-						System.out.println(vistaDos.getCogerCentro().getCogerPilaUno().getBackground());
-						JPanel pilaUno = vistaDos.getCogerCentro().getCogerPilaUno();
-						pilaUno.setBackground(new Color(254, 254, 254));
+						Colores colorCola=acciones.getDato().getCola().desEncolar();
+						acciones.entrarColorPila(colorCola);
+						acciones.pintarPilas(vistaDos.getCogerCentro().getCogerPilaUno(), vistaDos.getCogerCentro().getCogerPilaDos());
+						vistaDos.getCogerCentro().getCogerPilaUno().setBackground(new Color(254, 254, 254));
+						vistaDos.getCogerCentro().getCogerPilaDos().setBackground(new Color(254, 254, 254));
+						acciones.getDato().getCola().enColar(colorParcial);
+						acciones.pintarCola(vistaDos.getCogerCentro().getCogerCola());
 						pdColor.dispose();
 					}
 				});
@@ -113,12 +112,6 @@ public class ParaPracticaListaUI extends vistaUI {
 		this.slctColor = slctColor;
 	}
 
-	/*
-	 * public desplegablePedirColor getPdColor() { return pdColor; }
-	 * 
-	 * public void setPdColor(desplegablePedirColor pdColor) { this.pdColor =
-	 * pdColor; }
-	 */
 	public ArrayList<Colores> getRepetidos() {
 		return repetidos;
 	}
@@ -126,12 +119,5 @@ public class ParaPracticaListaUI extends vistaUI {
 	public void setRepetidos(ArrayList<Colores> repetidos) {
 		this.repetidos = repetidos;
 	}
-
-	/*
-	 * public Colores getColorParcial() { return colorParcial; }
-	 * 
-	 * public void setColorParcial(Colores colorParcial) { this.colorParcial =
-	 * colorParcial; }
-	 */
 
 }

@@ -41,12 +41,12 @@ public class panelUno extends JPanel {
 
 		pilaUno = new JPanel();
 		pilaUno.setBackground(Color.WHITE);
-		pilaUno.setBounds(162, 113, 322, 25);
+		pilaUno.setBounds(162, 105, 400, 35);
 		add(pilaUno);
 
 		pilaDos = new JPanel();
 		pilaDos.setBackground(Color.WHITE);
-		pilaDos.setBounds(162, 149, 322, 25);
+		pilaDos.setBounds(162, 149, 400, 35);
 		add(pilaDos);
 
 		lista = new JPanel();
