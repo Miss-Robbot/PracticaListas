@@ -62,10 +62,11 @@ public class Lista implements Listable{
 
 	@Override
 	public ArrayList<Integer> busquedaColor(Colores color) {
+		
 		ArrayList<Integer> posiciones = new ArrayList<Integer>();
 		
 		for (int i = 0; i < lista.size(); i++) {
-			if(lista.get(i).equals(color)){
+			if(lista.get(i).toString().equals(color.toString())){
 				posiciones.add(i);
 			}
 		}

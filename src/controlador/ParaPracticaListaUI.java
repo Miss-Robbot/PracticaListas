@@ -119,6 +119,26 @@ public class ParaPracticaListaUI extends vistaUI {
 			}
 			
 		});
+		
+		//no visualiza el desplegable
+		vistaDos.getCogerCabecera().getCogerBtnBorrarcolor().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				desplegablePedirColor elegirColor = new desplegablePedirColor();
+				JComboBox cogerComboBox = elegirColor.getCogerComboBox();
+				cogerComboBox.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						cogerComboBox.setVisible(true);
+						Colores colorParcial = (Colores) cogerComboBox.getSelectedItem();
+						acciones.borrarColor(colorParcial);
+						actualizarTodo();
+						elegirColor.dispose();
+					}
+			});
+		}
+		});
 
 	}
 	

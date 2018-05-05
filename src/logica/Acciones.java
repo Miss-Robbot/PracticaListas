@@ -79,12 +79,8 @@ public class Acciones implements Accionable{
 		
 	}
 
-	public Datos getDato() {
-		return dato;
-	}
-
-	public void setDato(Datos dato) {
-		this.dato = dato;
+	private void ordenarElementosLista(){
+		
 	}
 	
 	/**
@@ -243,4 +239,11 @@ public class Acciones implements Accionable{
 		}
 	}
 
+	public Datos getDato() {
+		return dato;
+	}
+
+	public void setDato(Datos dato) {
+		this.dato = dato;
+	}
 }
