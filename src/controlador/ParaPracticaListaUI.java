@@ -25,6 +25,8 @@ public class ParaPracticaListaUI extends vistaUI {
 	private Acciones acciones = new Acciones();
 	private desplegableSeleccionColor slctColor = new desplegableSeleccionColor();
 	private ArrayList<Colores> repetidos = new ArrayList<Colores>();
+	private ArrayList<Colores> select = new ArrayList<Colores>();
+	private int ronda=0;
 
 	public ParaPracticaListaUI() {
 
@@ -43,6 +45,7 @@ public class ParaPracticaListaUI extends vistaUI {
 
 				acciones.crearColaJlabel(vistaDos.getCogerCentro().getCogerCola());
 				acciones.crearPilas(vistaDos.getCogerCentro().getCogerPilaUno(), vistaDos.getCogerCentro().getCogerPilaDos());
+				acciones.crearLista(vistaDos.getCogerCentro().getCogerLista());
 			}
 		});
 
@@ -50,22 +53,27 @@ public class ParaPracticaListaUI extends vistaUI {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				JComboBox cogerComboBox = slctColor.getCogerComboBox();
+				cogerComboBox.removeAllItems();
+				ArrayList<Colores> colores = acciones.seleccionarColor(repetidos, ronda);
+				cogerComboBox.addItem(acciones.coloresVista(colores, 0));
+				cogerComboBox.addItem(acciones.coloresVista(colores, 1));
+				cogerComboBox.addItem(acciones.coloresVista(colores, 2));
+				
+				cogerComboBox.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Colores colorParcial = (Colores) cogerComboBox.getSelectedItem();
+						Colores colorCola=acciones.getDato().getCola().desEncolar();
+						acciones.entrarColorPila(colorCola);
+						acciones.getDato().getCola().enColar(colorParcial);
+						actualizarTodo();
+						slctColor.dispose();
+						
+					}
+				});
 				slctColor.setVisible(true);
-				//slctColor.getCogerComboBox().setModel(new DefaultComboBoxModel(acciones.colorSeleccionVista(
-				//acciones.seleccionarColor(repetidos, ronda))));
 				
-				
-				
-			}
-		});
-
-		slctColor.getCogerComboBox().addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				slctColor.setVisible(false);
-
 			}
 		});
 
@@ -84,8 +92,7 @@ public class ParaPracticaListaUI extends vistaUI {
 						Colores colorCola=acciones.getDato().getCola().desEncolar();
 						acciones.entrarColorPila(colorCola);
 						acciones.getDato().getCola().enColar(colorParcial);
-						acciones.pintarCola(vistaDos.getCogerCentro().getCogerCola());
-						acciones.pintarPilas(vistaDos.getCogerCentro().getCogerPilaUno(), vistaDos.getCogerCentro().getCogerPilaDos());
+						actualizarTodo();
 						pdColor.dispose();
 					}
 				});
@@ -93,6 +100,29 @@ public class ParaPracticaListaUI extends vistaUI {
 			}
 		});
 
+	}
+	
+	public void crearListaRepes(Colores colorcillo){
+		int contador=0;
+		this.select.add(colorcillo);
+		
+		for (int i = 0; i < select.size(); i++) {
+			if(colorcillo.equals(select.get(i))){
+				contador++;
+			}
+		}
+		if(contador>1){
+			this.repetidos.add(colorcillo);
+		}
+		
+	}
+	
+	/**
+	 * este método es al que hay que llamar siempre que se de a algún botón
+	 */
+	public void actualizarTodo(){
+		acciones.pintarCola(vistaDos.getCogerCentro().getCogerCola());
+		acciones.pintarPilas(vistaDos.getCogerCentro().getCogerPilaUno(), vistaDos.getCogerCentro().getCogerPilaDos());
 	}
 
 	public Acciones getAcciones() {

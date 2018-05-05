@@ -36,22 +36,22 @@ public class panelUno extends JPanel {
 
 		cola = new JPanel();
 		cola.setBackground(Color.WHITE);
-		cola.setBounds(162, 50, 400, 35);
+		cola.setBounds(162, 50, 570, 35);
 		add(cola);
 
 		pilaUno = new JPanel();
 		pilaUno.setBackground(Color.WHITE);
-		pilaUno.setBounds(162, 105, 400, 35);
+		pilaUno.setBounds(162, 105, 570, 35);
 		add(pilaUno);
 
 		pilaDos = new JPanel();
 		pilaDos.setBackground(Color.WHITE);
-		pilaDos.setBounds(162, 149, 400, 35);
+		pilaDos.setBounds(162, 149, 570, 35);
 		add(pilaDos);
 
 		lista = new JPanel();
 		lista.setBackground(Color.WHITE);
-		lista.setBounds(183, 221, 449, 125);
+		lista.setBounds(162, 200, 570, 150);
 		add(lista);
 
 		lblCola = new JLabel("Cola");
@@ -75,7 +75,7 @@ public class panelUno extends JPanel {
 		lblLista = new JLabel("Lista");
 		lblLista.setForeground(new Color(0, 0, 102));
 		lblLista.setFont(new Font("Give You Glory", Font.BOLD | Font.ITALIC, 16));
-		lblLista.setBounds(119, 274, 54, 25);
+		lblLista.setBounds(49, 244, 67, 25);
 		add(lblLista);
 
 		textField = new JTextField();

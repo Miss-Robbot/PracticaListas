@@ -62,6 +62,10 @@ public class Acciones implements Accionable{
 			repetidos.clear();
 		}
 	}
+	
+	public Colores coloresVista(ArrayList<Colores> colores, int index) {
+		return colores.get(index);
+	}
 
 	//no está hecho
 	@Override
@@ -173,18 +177,27 @@ public class Acciones implements Accionable{
 	
 	}
 	
+	/**
+	 * Crea los JLabel blanco sin bordes en la lista
+	 * @param lista
+	 */
 	public void crearLista(JPanel lista){
-		int comienzo=0;
+		int comienzo=10;
+		int altura=5;
 		for (int i = 0; i < Constantes.tamanioLista; i++) {
 			JLabel etiqueta= new JLabel();
-			etiqueta.setBounds(comienzo,0,Constantes.separacionEtiquetasLista,35);
-			comienzo+=Constantes.separacionEtiquetasLista;
+			etiqueta.setBounds(comienzo,altura,Constantes.separacionEtiquetasLista,40);
+			comienzo+=Constantes.separacionEtiquetasLista+15;
+			if(i%6==0 && i!=0){
+				comienzo=10;
+				altura+=50;
+			}
 			etiqueta.setName(""+i);
 			etiqueta.setVisible(true);
 			etiqueta.setBackground(Colores.blanco.getColor());
-			etiqueta.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+			//etiqueta.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 			etiqueta.setOpaque(true);
-			pilaDos.add(etiqueta);
+			lista.add(etiqueta);
 		}
 	}
 	/**
