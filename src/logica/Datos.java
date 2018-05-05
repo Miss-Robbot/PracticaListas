@@ -1,5 +1,6 @@
 package logica;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -14,8 +15,8 @@ public class Datos {
 
 	private Lista lista = new Lista();
 	private Cola cola = new Cola(generarCola());
-	private Pila pilaUno = new Pila();
-	private Pila pilaDos = new Pila();
+	private Pila pilaUno = new Pila(generarPilaUno());
+	private Pila pilaDos = new Pila(generarPilaDos());
 
 	public Datos(){
 		super();
@@ -132,6 +133,22 @@ public class Datos {
 			ColaParcial.add(Constantes.colores[aleatorio]);
 		}
 		return ColaParcial;
+	}
+	
+	public LinkedList<Colores> generarPilaUno(){
+		LinkedList<Colores> PilaParcial= new LinkedList<Colores>();
+		for (int i = 0; i < Constantes.tamanioPilaUno; i++) {
+			PilaParcial.add(Colores.blanco);
+		}
+		return PilaParcial;
+	}
+	
+	public LinkedList<Colores> generarPilaDos(){
+		LinkedList<Colores> PilaParcial= new LinkedList<Colores>();
+		for (int i = 0; i < Constantes.tamanioPilaDos; i++) {
+			PilaParcial.add(Colores.blanco);
+		}
+		return PilaParcial;
 	}
 	
 	/**

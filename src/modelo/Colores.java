@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public enum Colores{
 
 	rojo(Color.red, "rojo"), amarillo(Color.YELLOW, "amarillo"), azul(Color.BLUE, "azul"), verde(Color.GREEN,
-			"verde"), naranja(Color.orange, "naranja");
+			"verde"), naranja(Color.orange, "naranja"), blanco(Color.white, "blanco");
 	private Color color;
 	private String nombre;
 

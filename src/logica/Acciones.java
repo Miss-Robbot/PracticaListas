@@ -18,6 +18,13 @@ import utiles.Constantes;
 public class Acciones implements Accionable{
 	
 	private Datos dato = new Datos();
+	
+	//Los tres primeros métodos aun no están hechos (yolanda y mamen)
+	//Los demás, en orden son para:
+	//	1-crear la cola
+	//	2-Añadir en la pila los que pasan de la cola
+	//	3-Crearse los JLabel de las estructuras
+	//	4-Pintar las estructuras
 
 	@Override
 	public ArrayList<Colores> seleccionarColor(ArrayList<Colores> repetidos,int ronda) {
@@ -73,7 +80,19 @@ public class Acciones implements Accionable{
 		this.dato.getLista().borrarColores(this.dato.getLista().busquedaColor(color));
 		
 	}
+
+	public Datos getDato() {
+		return dato;
+	}
+
+	public void setDato(Datos dato) {
+		this.dato = dato;
+	}
 	
+	/**
+	 * Para crear los colores aleatorios de la cola al principio del juego
+	 * @return
+	 */
 	public LinkedList<JLabel> generarColoresCola(){
 		LinkedList<Colores> cola= this.dato.generarCola();
 		LinkedList<JLabel> colaVista= new LinkedList<JLabel>();
@@ -85,12 +104,19 @@ public class Acciones implements Accionable{
 		return colaVista;
 	}
 
-	public Datos getDato() {
-		return dato;
-	}
-
-	public void setDato(Datos dato) {
-		this.dato = dato;
+	/**
+	 * Para meter el color que sale de la cola en una pila al azar
+	 * @param color
+	 */
+	public void entrarColorPila(Colores color){
+		int aleatorio= (int)(Math.random()*2);
+		if(aleatorio==0){
+			dato.getPilaUno().desApilarBlanco();
+			dato.getPilaUno().apilar(color);}
+		else{
+			dato.getPilaDos().desApilarBlanco();
+			dato.getPilaDos().apilar(color);
+		}	
 	}
 	
 	/**
@@ -113,35 +139,20 @@ public class Acciones implements Accionable{
 		}
 	}
 	
-	public void pintarCola(JPanel panelito){
-		for (int i = 0; i < Constantes.tamanioCola; i++) {
-			panelito.getComponent(i).setBackground(dato.getCola().getCola().get(i).getColor());
-		}
-	}
-	
 	/**
-	 * Para meter el color que sale de la cola en una pila al azar
-	 * @param color
+	 * Crea los JLabel de las pilas para luego pintarlos
+	 * @param pilaUno
+	 * @param pilaDos
 	 */
-	public void entrarColorPila(Colores color){
-		int aleatorio= (int)(Math.random()*2);
-		if(aleatorio==0)
-			dato.getPilaUno().apilar(color);
-		else
-			dato.getPilaDos().apilar(color);
-	}
-	
 	public void crearPilas(JPanel pilaUno, JPanel pilaDos){
 		int comienzo=0;
-		pilaUno.setBackground(new Color(254, 254, 254));
-		pilaDos.setBackground(new Color(254, 254, 254));
 			for (int i = 0; i < Constantes.tamanioPilaUno; i++) {
 				JLabel etiqueta= new JLabel();
 				etiqueta.setBounds(comienzo,0,Constantes.separacionEtiquetasPilaUno,35);
 				comienzo+=Constantes.separacionEtiquetasPilaUno;
 				etiqueta.setName(""+i);
-				etiqueta.setVisible(false);
-				//etiqueta.setBackground(Color.blue);
+				etiqueta.setVisible(true);
+				etiqueta.setBackground(Colores.blanco.getColor());
 				etiqueta.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 				etiqueta.setOpaque(true);
 				pilaUno.add(etiqueta);
@@ -153,35 +164,52 @@ public class Acciones implements Accionable{
 			etiqueta.setBounds(comienzo,0,Constantes.separacionEtiquetasPilaDos,35);
 			comienzo+=Constantes.separacionEtiquetasPilaDos;
 			etiqueta.setName(""+i);
-			etiqueta.setVisible(false);
-			//etiqueta.setBackground(Color.red);
+			etiqueta.setVisible(true);
+			etiqueta.setBackground(Colores.blanco.getColor());
 			etiqueta.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 			etiqueta.setOpaque(true);
 			pilaDos.add(etiqueta);
 		}
 	
 	}
-	public void pintarPilas(JPanel pilaUno, JPanel pilaDos){
-		pilaUno.removeAll();
-		pilaDos.removeAll();
+	
+	public void crearLista(JPanel lista){
 		int comienzo=0;
-		if(dato.getPilaUno().getPila().size()>0){
-			for (int i = 0; i < dato.getPilaUno().getPila().size(); i++) {
-				JLabel etiqueta=(JLabel)pilaUno.getComponent(i);
-				etiqueta.setVisible(true);
-				etiqueta.setBackground(dato.getPilaUno().getPila().get(i).getColor());
-				etiqueta.setOpaque(true);
-			}
-		}
-		if(dato.getPilaDos().getPila().size()>0){
-		comienzo=0;
-		for (int i = 0; i < dato.getPilaDos().getPila().size(); i++) {
-			JLabel etiqueta=(JLabel)pilaDos.getComponent(i);
+		for (int i = 0; i < Constantes.tamanioLista; i++) {
+			JLabel etiqueta= new JLabel();
+			etiqueta.setBounds(comienzo,0,Constantes.separacionEtiquetasLista,35);
+			comienzo+=Constantes.separacionEtiquetasLista;
+			etiqueta.setName(""+i);
 			etiqueta.setVisible(true);
-			etiqueta.setBackground(dato.getPilaDos().getPila().get(i).getColor());
+			etiqueta.setBackground(Colores.blanco.getColor());
+			etiqueta.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 			etiqueta.setOpaque(true);
-		}
+			pilaDos.add(etiqueta);
 		}
 	}
+	/**
+	 * Pinta la cola en la vista
+	 * @param panelito
+	 */
+	public void pintarCola(JPanel panelito){
+		for (int i = 0; i < Constantes.tamanioCola; i++) {
+			panelito.getComponent(i).setBackground(dato.getCola().getCola().get(i).getColor());
+		}
+	}
+	/**
+	 * Pinta las dos pilas.
+	 * @param pilaUno
+	 * @param pilaDos
+	 */
+	public void pintarPilas(JPanel pilaUno, JPanel pilaDos){
+		pilaUno.setBackground(new Color(254, 254, 254));
+		pilaDos.setBackground(new Color(254, 254, 254));
+		for (int i = 0; i < Constantes.tamanioPilaUno; i++) {
+			pilaUno.getComponent(i).setBackground(dato.getPilaUno().getPila().get(i).getColor());
+		}
+		for (int i = 0; i < Constantes.tamanioPilaDos; i++) {
+			pilaDos.getComponent(i).setBackground(dato.getPilaDos().getPila().get(i).getColor());
+		}
+		}
 
 }

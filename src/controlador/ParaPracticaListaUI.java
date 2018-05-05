@@ -83,11 +83,9 @@ public class ParaPracticaListaUI extends vistaUI {
 						Colores colorParcial = (Colores) cogerComboBox.getSelectedItem();
 						Colores colorCola=acciones.getDato().getCola().desEncolar();
 						acciones.entrarColorPila(colorCola);
-						acciones.pintarPilas(vistaDos.getCogerCentro().getCogerPilaUno(), vistaDos.getCogerCentro().getCogerPilaDos());
-						vistaDos.getCogerCentro().getCogerPilaUno().setBackground(new Color(254, 254, 254));
-						vistaDos.getCogerCentro().getCogerPilaDos().setBackground(new Color(254, 254, 254));
 						acciones.getDato().getCola().enColar(colorParcial);
 						acciones.pintarCola(vistaDos.getCogerCentro().getCogerCola());
+						acciones.pintarPilas(vistaDos.getCogerCentro().getCogerPilaUno(), vistaDos.getCogerCentro().getCogerPilaDos());
 						pdColor.dispose();
 					}
 				});
