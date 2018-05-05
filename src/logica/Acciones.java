@@ -67,12 +67,6 @@ public class Acciones implements Accionable{
 		return colores.get(index);
 	}
 
-	//no está hecho
-	@Override
-	public Colores pedirColor() {
-		return null;
-	}
-
 	@Override
 	public void barajar() {
 		this.dato.equilibrarPilas();
@@ -128,8 +122,11 @@ public class Acciones implements Accionable{
 	}
 	
 	public void entrarColorLista(Colores color){
-		dato.getLista().removeLista();
-		dato.getLista().addLista(color);
+		if(!color.toString().equals("blanco"))
+		{
+			dato.getLista().removeLista();
+			dato.getLista().addLista(color);
+		}
 		
 	}
 	

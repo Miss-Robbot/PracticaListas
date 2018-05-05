@@ -39,23 +39,28 @@ public class Prueba {
 			System.out.println((datos.sortearColor(repetidos)).toString());
 		}*/
 		
-		/*Datos datos= new Datos();
+		Datos datos= new Datos();
 		datos.getPilaUno().apilar(Colores.rojo);
 		datos.getPilaUno().apilar(Colores.azul);
 		datos.getPilaDos().apilar(Colores.amarillo);
 		datos.getPilaDos().apilar(Colores.rojo);
 		datos.getPilaDos().apilar(Colores.naranja);
-	
+		LinkedList<Colores> pilaParcial= new LinkedList<Colores>();
+		LinkedList<Colores> pilaBlancos= new LinkedList<Colores>();
 		datos.equilibrarPilas();
+		System.out.println(datos.getPilaUno().getPila().toString());
+		System.out.println(datos.getPilaDos().getPila().toString());
+	
+		/*datos.equilibrarPilas();
 		System.out.println(datos.getPilaUno().getPila().toString()+"\n"+datos.getPilaDos().getPila().toString());*/
 		
 		/*Datos datos= new Datos();
 		System.out.println(datos.getCola().getCola().toString());*/
 		
-		Acciones acciones= new Acciones();
+		/*Acciones acciones= new Acciones();
 		acciones.entrarColorPila(Colores.verde);
 		System.out.println(acciones.getDato().getPilaUno().getPila());
-		System.out.println(acciones.getDato().getPilaDos().getPila());
+		System.out.println(acciones.getDato().getPilaDos().getPila());*/
 	
 	}
 	

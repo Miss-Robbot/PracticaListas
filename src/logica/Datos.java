@@ -17,6 +17,9 @@ public class Datos {
 	private Cola cola = new Cola(generarCola());
 	private Pila pilaUno = new Pila(generarPilaUno());
 	private Pila pilaDos = new Pila(generarPilaDos());
+	private int pedirColor=0;
+	private int barajarPilas=0;
+	private int borrarColor=0;
 
 	public Datos(){
 		super();
@@ -53,22 +56,47 @@ public class Datos {
 	public void setPilaDos(Pila pilaDos) {
 		this.pilaDos = pilaDos;
 	}
+	
+	public int getPedirColor() {
+		return pedirColor;
+	}
+
+	public void setPedirColor(int pedirColor) {
+		this.pedirColor = pedirColor;
+	}
+
+	public int getBarajarPilas() {
+		return barajarPilas;
+	}
+
+	public void setBarajarPilas(int barajarPilas) {
+		this.barajarPilas = barajarPilas;
+	}
+
+	public int getBorrarColor() {
+		return borrarColor;
+	}
+
+	public void setBorrarColor(int borrarColor) {
+		this.borrarColor = borrarColor;
+	}
 
 	/**
 	 * coge las dos pilas y las deja del mismo tamaño (y si es impar el primero lo deja mas peque) funciona perfecto
 	 */
 	public void equilibrarPilas() {
-		int largo= (this.pilaUno.getPila().size()+this.pilaDos.getPila().size())/2;
 		LinkedList<Colores> pilaParcial= new LinkedList<Colores>();
-		rellenarPilaParcial(pilaParcial);
+		LinkedList<Colores>pilaBlancos= new LinkedList<Colores>();
+		rellenarPilaParcial(pilaParcial,pilaBlancos);
+		int largo= (pilaParcial.size())/2;
 		desordenarColores(pilaParcial);
 		rellenarDeNuevoPilas(pilaParcial, largo);
-		
-		
+		rellenarConBlancos(pilaUno.getPila(), Constantes.tamanioPilaUno);
+		rellenarConBlancos(pilaDos.getPila(), Constantes.tamanioPilaDos);
 	}
 	
 	/**
-	 * Desordena una lista de colores para entrarlas en las pilas y que estén desordenadas.
+	 * Desordena los colores de pilaParcial para entrarlas en las pilas y que estén desordenadas.
 	 * @param pilaParcial
 	 */
 	private void desordenarColores(LinkedList<Colores> pilaParcial){
@@ -77,6 +105,37 @@ public class Datos {
 			int aleatorio= (int) (Math.random()*pilaParcial.size());
 			Colores color= pilaParcial.remove(aleatorio);
 			pilaParcial.add(color);
+		}
+	}
+
+	/**
+	 * Rellena una pila parcial con las dos pilas para poder desordenarla.
+	 * @param pilaParcial
+	 */
+	private void rellenarPilaParcial(LinkedList<Colores>pilaParcial,LinkedList<Colores>pilaBlancos)
+	{
+
+		for (Iterator iterator = pilaUno.getPila().iterator(); iterator.hasNext();) {
+			Colores colores = (Colores) iterator.next();
+			if(!colores.toString().equals("blanco")){
+				pilaParcial.add(pilaUno.getPila().getFirst());
+			}
+			else{
+				pilaBlancos.add(pilaUno.getPila().getFirst());
+			}
+			iterator.remove();
+		}
+		
+		for (Iterator iterator = pilaDos.getPila().iterator(); iterator.hasNext();) {
+			Colores colores = (Colores) iterator.next();
+			if(!colores.toString().equals("blanco")){
+				pilaParcial.add(pilaDos.getPila().getFirst());
+			}
+			else{
+				pilaBlancos.add(pilaDos.getPila().getFirst());
+			}
+			iterator.remove();
+			
 		}
 	}
 	
@@ -91,7 +150,6 @@ public class Datos {
 			Colores color = (Colores) iterator.next();
 			if(numeroParcial<largo){
 				this.pilaUno.apilar(color);
-				
 			}
 			else{
 				this.pilaDos.apilar(color);
@@ -99,25 +157,15 @@ public class Datos {
 			numeroParcial++;
 		}
 	}
-	
-	/**
-	 * Rellena una pila parcial con las dos pilas para poder desordenarla.
-	 * @param pilaParcial
-	 */
-	private void rellenarPilaParcial(LinkedList<Colores>pilaParcial)
-	{
 
-		for (Iterator iterator = pilaUno.getPila().iterator(); iterator.hasNext();) {
-			Colores colores = (Colores) iterator.next();
-			pilaParcial.add(pilaUno.getPila().getFirst());
-			iterator.remove();
-		}
-		
-		for (Iterator iterator = pilaDos.getPila().iterator(); iterator.hasNext();) {
-			Colores colores = (Colores) iterator.next();
-			pilaParcial.add(pilaDos.getPila().getFirst());
-			iterator.remove();
-			
+	/**
+	 * Para tener los blancos y que no se descordine con la vista
+	 * @param pilaParcial
+	 * @param tamanio
+	 */
+	private void rellenarConBlancos(LinkedList<Colores>pilaParcial,int tamanio){
+		for (int i = pilaParcial.size(); i < tamanio; i++) {
+			pilaParcial.add(Colores.blanco);
 		}
 	}
 

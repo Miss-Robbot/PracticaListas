@@ -16,6 +16,7 @@ import javax.swing.plaf.ColorUIResource;
 
 import logica.Acciones;
 import modelo.Colores;
+import utiles.Constantes;
 import vista.desplegablePedirColor;
 import vista.desplegableSeleccionColor;
 import vista.vistaUI;
@@ -32,10 +33,7 @@ public class ParaPracticaListaUI extends vistaUI {
 
 		vistaUno.setVisible(true);
 		vistaDos.setVisible(false);
-		//JLabel temporalLabel = new JLabel();
 		
-	
-
 		vistaUno.getCogerBtnJugar().addActionListener(new ActionListener() {
 
 			@Override
@@ -53,8 +51,12 @@ public class ParaPracticaListaUI extends vistaUI {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				JComboBox cogerComboBox = slctColor.getCogerComboBox();
+				
+				desplegableSeleccionColor slColor = new desplegableSeleccionColor();
+				
+				JComboBox<Colores> cogerComboBox = slColor.getCogerComboBox();
 				cogerComboBox.removeAllItems();
+				
 				ArrayList<Colores> colores = acciones.seleccionarColor(repetidos, ronda);
 				cogerComboBox.addItem(acciones.coloresVista(colores, 0));
 				cogerComboBox.addItem(acciones.coloresVista(colores, 1));
@@ -65,38 +67,57 @@ public class ParaPracticaListaUI extends vistaUI {
 					public void actionPerformed(ActionEvent e) {
 						Colores colorParcial = (Colores) cogerComboBox.getSelectedItem();
 						Colores colorCola=acciones.getDato().getCola().desEncolar();
-						
+						acciones.entrarColorPila(colorCola);
+						acciones.getDato().getCola().enColar(colorParcial);
 						actualizarTodo();
-						slctColor.dispose();
+						slColor.dispose();
 						
 					}
 				});
-				slctColor.setVisible(true);
+				slColor.setVisible(true);
 				
 			}
 		});
 
 		vistaDos.getCogerCabecera().getCogerBtnPedirColor().addActionListener(new ActionListener() {
-
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(acciones.getDato().getPedirColor()<Constantes.maxPedirColor){
+					desplegablePedirColor pdColor = new desplegablePedirColor();
+					JComboBox cogerComboBox = pdColor.getCogerComboBox();
+					cogerComboBox.addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
 
-				desplegablePedirColor pdColor = new desplegablePedirColor();
-				JComboBox cogerComboBox = pdColor.getCogerComboBox();
-				cogerComboBox.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-
-						Colores colorParcial = (Colores) cogerComboBox.getSelectedItem();
-						Colores colorCola=acciones.getDato().getCola().desEncolar();
-						acciones.entrarColorPila(colorCola);
-						acciones.getDato().getCola().enColar(colorParcial);
-						actualizarTodo();
-						pdColor.dispose();
-					}
-				});
-				pdColor.setVisible(true);
+							Colores colorParcial = (Colores) cogerComboBox.getSelectedItem();
+							Colores colorCola=acciones.getDato().getCola().desEncolar();
+							acciones.entrarColorPila(colorCola);
+							acciones.getDato().getCola().enColar(colorParcial);
+							actualizarTodo();
+							pdColor.dispose();
+						}
+					});
+					pdColor.setVisible(true);
+					
+					acciones.getDato().setPedirColor(acciones.getDato().getPedirColor()+1);
+				}
+				
 			}
+		});
+		
+		vistaDos.getCogerCabecera().getCogerBtnBarajarPilas().addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if(acciones.getDato().getBarajarPilas()<Constantes.maxBarajarPilas){
+					acciones.barajar();
+					actualizarTodo();	
+					acciones.getDato().setBarajarPilas(acciones.getDato().getBarajarPilas()+1);
+				}
+				
+			}
+			
 		});
 
 	}

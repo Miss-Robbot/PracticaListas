@@ -14,4 +14,7 @@ public class Constantes {
 	public final static int separacionEtiquetasPilaUno=190;
 	public final static int separacionEtiquetasPilaDos=142;
 	public final static int separacionEtiquetasLista=65;
+	public final static int maxPedirColor=5;
+	public final static int maxBarajarPilas=3;
+	public final static int maxBorrarColor=5;
 }
