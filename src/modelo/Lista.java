@@ -8,8 +8,9 @@ public class Lista implements Listable{
 	
 	private LinkedList<Colores> lista = new LinkedList<Colores>();
 	
-	public Lista(){
+	public Lista(LinkedList<Colores> lista){
 		super();
+		this.lista=lista;
 	}
 	
 	
@@ -23,8 +24,12 @@ public class Lista implements Listable{
 
 	@Override
 	public void addLista(Colores color) {
-		lista.add(color);
+		lista.addFirst(color);
 		
+	}
+	
+	public void removeLista(){
+		this.lista.removeLast();
 	}
 	
 	

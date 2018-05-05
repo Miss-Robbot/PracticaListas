@@ -3,6 +3,7 @@ package test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +13,7 @@ import modelo.Lista;
 
 public class ListaTest {
 
-	Lista lista= new Lista();
+	Lista lista= new Lista( new LinkedList<Colores>());
 	
 	@Before
 	public void rellenarLista(){

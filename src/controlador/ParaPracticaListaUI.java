@@ -65,8 +65,7 @@ public class ParaPracticaListaUI extends vistaUI {
 					public void actionPerformed(ActionEvent e) {
 						Colores colorParcial = (Colores) cogerComboBox.getSelectedItem();
 						Colores colorCola=acciones.getDato().getCola().desEncolar();
-						acciones.entrarColorPila(colorCola);
-						acciones.getDato().getCola().enColar(colorParcial);
+						
 						actualizarTodo();
 						slctColor.dispose();
 						
@@ -123,6 +122,7 @@ public class ParaPracticaListaUI extends vistaUI {
 	public void actualizarTodo(){
 		acciones.pintarCola(vistaDos.getCogerCentro().getCogerCola());
 		acciones.pintarPilas(vistaDos.getCogerCentro().getCogerPilaUno(), vistaDos.getCogerCentro().getCogerPilaDos());
+		acciones.pintarLista(vistaDos.getCogerCentro().getCogerLista());
 	}
 
 	public Acciones getAcciones() {

@@ -114,13 +114,23 @@ public class Acciones implements Accionable{
 	 */
 	public void entrarColorPila(Colores color){
 		int aleatorio= (int)(Math.random()*2);
+		
 		if(aleatorio==0){
-			dato.getPilaUno().desApilarBlanco();
-			dato.getPilaUno().apilar(color);}
+			Colores colorParcial=dato.getPilaUno().desApilarBlanco();
+			entrarColorLista(colorParcial);
+			dato.getPilaUno().apilar(color);
+			}
 		else{
-			dato.getPilaDos().desApilarBlanco();
+			Colores colorParcial=dato.getPilaDos().desApilarBlanco();
+			entrarColorLista(colorParcial);
 			dato.getPilaDos().apilar(color);
 		}	
+	}
+	
+	public void entrarColorLista(Colores color){
+		dato.getLista().removeLista();
+		dato.getLista().addLista(color);
+		
 	}
 	
 	/**
@@ -223,6 +233,17 @@ public class Acciones implements Accionable{
 		for (int i = 0; i < Constantes.tamanioPilaDos; i++) {
 			pilaDos.getComponent(i).setBackground(dato.getPilaDos().getPila().get(i).getColor());
 		}
+	}
+	
+	/**
+	 * Pinta la lista
+	 * @param lista
+	 */
+	public void pintarLista(JPanel lista){
+		lista.setBackground(new Color(254, 254, 254));
+		for (int i = 0; i < Constantes.tamanioLista; i++) {
+			lista.getComponent(i).setBackground(dato.getLista().getLista().get(i).getColor());
 		}
+	}
 
 }

@@ -13,7 +13,7 @@ import utiles.Constantes;
 
 public class Datos {
 
-	private Lista lista = new Lista();
+	private Lista lista = new Lista(generarLista());
 	private Cola cola = new Cola(generarCola());
 	private Pila pilaUno = new Pila(generarPilaUno());
 	private Pila pilaDos = new Pila(generarPilaDos());
@@ -151,6 +151,14 @@ public class Datos {
 		return PilaParcial;
 	}
 	
+	public LinkedList<Colores> generarLista(){
+		LinkedList<Colores> ListaParcial= new LinkedList<Colores>();
+		for (int i = 0; i < Constantes.tamanioLista; i++) {
+			ListaParcial.add(Colores.blanco);
+		}
+		return ListaParcial;
+	}
+	
 	/**
 	 * Devuelve un color teniendo en cuenta que no puede devolver un repetido
 	 * @param repetidos
@@ -160,7 +168,7 @@ public class Datos {
 		boolean salir= true;
 		int index=0;
 		do{
-			index = (int) (Math.random()*(Colores.getCantidadElementos()));
+			index = (int) (Math.random()*(Colores.getCantidadElementos()-1));
 			
 			salir=true;
 			for (int i = 0; i < repetidos.size(); i++) {
