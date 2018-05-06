@@ -17,12 +17,17 @@ public class Datos {
 	private Cola cola = new Cola(generarCola());
 	private Pila pilaUno = new Pila(generarPilaUno());
 	private Pila pilaDos = new Pila(generarPilaDos());
-	private int pedirColor=0;
-	private int barajarPilas=0;
-	private int borrarColor=0;
+	private int pedirColor;
+	private int barajarPilas;
+	private int borrarColor;
+	private int monedas;
 
 	public Datos(){
 		super();
+		this.pedirColor=0;
+		this.barajarPilas=0;
+		this.borrarColor=0;
+		this.monedas=0;
 	}
 
 	public Lista getLista() {
@@ -79,6 +84,14 @@ public class Datos {
 
 	public void setBorrarColor(int borrarColor) {
 		this.borrarColor = borrarColor;
+	} 
+
+	public int getMonedas() {
+		return monedas;
+	}
+
+	public void setMonedas(int monedas) {
+		this.monedas = monedas;
 	}
 
 	/**
@@ -183,6 +196,10 @@ public class Datos {
 		return ColaParcial;
 	}
 	
+	/**
+	 * Genera la pila uno de 3 elementos de colores blancos
+	 * @return
+	 */
 	public LinkedList<Colores> generarPilaUno(){
 		LinkedList<Colores> PilaParcial= new LinkedList<Colores>();
 		for (int i = 0; i < Constantes.tamanioPilaUno; i++) {
@@ -191,6 +208,10 @@ public class Datos {
 		return PilaParcial;
 	}
 	
+	/**
+	 * Genera la pila dos de 4 elementos de colores blancos
+	 * @return
+	 */
 	public LinkedList<Colores> generarPilaDos(){
 		LinkedList<Colores> PilaParcial= new LinkedList<Colores>();
 		for (int i = 0; i < Constantes.tamanioPilaDos; i++) {
@@ -199,6 +220,10 @@ public class Datos {
 		return PilaParcial;
 	}
 	
+	/**
+	 * Genera una lista de 20 elementos con colores blancos
+	 * @return
+	 */
 	public LinkedList<Colores> generarLista(){
 		LinkedList<Colores> ListaParcial= new LinkedList<Colores>();
 		for (int i = 0; i < Constantes.tamanioLista; i++) {

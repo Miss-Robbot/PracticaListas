@@ -73,16 +73,15 @@ public class Acciones implements Accionable{
 		
 	}
 
+	/**
+	 * Para el método de borrarColor, además de ponerte en los datos las monedas que estás ganando, te actualiza la lista sin el color introducido.
+	 */
 	@Override
 	public void borrarColor(Colores color) {
-		this.dato.getLista().borrarColores(this.dato.getLista().busquedaColor(color));
-		
+		this.dato.getLista().borrarColores(color);
+		this.dato.setMonedas(this.dato.getLista().getMonedas());
 	}
 
-	private void ordenarElementosLista(){
-		
-	}
-	
 	/**
 	 * Para crear los colores aleatorios de la cola al principio del juego
 	 * @return

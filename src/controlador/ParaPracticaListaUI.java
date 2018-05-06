@@ -79,6 +79,9 @@ public class ParaPracticaListaUI extends vistaUI {
 			}
 		});
 
+		/**
+		 * Boton que te da a escoger entre los cinco colores un maximo de 5 veces
+		 */
 		vistaDos.getCogerCabecera().getCogerBtnPedirColor().addActionListener(new ActionListener() {
 			
 			@Override
@@ -106,6 +109,9 @@ public class ParaPracticaListaUI extends vistaUI {
 			}
 		});
 		
+		/**
+		 * Boton que baraja las pilas como maximo 3 veces
+		 */
 		vistaDos.getCogerCabecera().getCogerBtnBarajarPilas().addActionListener(new ActionListener(){
 
 			@Override
@@ -120,17 +126,19 @@ public class ParaPracticaListaUI extends vistaUI {
 			
 		});
 		
-		//no visualiza el desplegable
+		/**
+		 * Boton que borra el color que quieras de la lista
+		 */
 		vistaDos.getCogerCabecera().getCogerBtnBorrarcolor().addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				desplegablePedirColor elegirColor = new desplegablePedirColor();
+				elegirColor.setVisible(true);
 				JComboBox cogerComboBox = elegirColor.getCogerComboBox();
 				cogerComboBox.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						cogerComboBox.setVisible(true);
 						Colores colorParcial = (Colores) cogerComboBox.getSelectedItem();
 						acciones.borrarColor(colorParcial);
 						actualizarTodo();
@@ -164,6 +172,7 @@ public class ParaPracticaListaUI extends vistaUI {
 		acciones.pintarCola(vistaDos.getCogerCentro().getCogerCola());
 		acciones.pintarPilas(vistaDos.getCogerCentro().getCogerPilaUno(), vistaDos.getCogerCentro().getCogerPilaDos());
 		acciones.pintarLista(vistaDos.getCogerCentro().getCogerLista());
+		vistaDos.getCogerCentro().getCogerNumeroMonedas().setText("Numero monedas: "+acciones.getDato().getMonedas());
 	}
 
 	public Acciones getAcciones() {

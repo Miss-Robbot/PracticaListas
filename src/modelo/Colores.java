@@ -33,5 +33,18 @@ public enum Colores{
 	public String toString() {
 		return this.nombre;
 	}
-
+	
+	/**
+	 * Como el equals no se puede poner en una enumeración pues pongo este método para poder usarlo en las listas. No compara bien con el 
+	 * equals por defecto
+	 * @param color
+	 * @return
+	 */
+	public boolean compararColores(Colores color){
+		if(super.toString().equals(color.toString())){
+			return true;
+		}
+		else
+			return false;
+	}
 }

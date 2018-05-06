@@ -11,12 +11,11 @@ public interface Listable {
 	public void addLista(Colores color);
 	
 	/**
-	 * Borra los colores en las posiciones que se pasan por parámetro. Devuelve el número de monedas que hemos obtenido 
-	 * al borrar los colores
+	 * Borra color en todas sus posiciones y actualiza monedas
 	 * @param posiciones
 	 * @return
 	 */
-	public int borrarColores(ArrayList<Integer> posiciones);
+	public void borrarColores(Colores color);
 	
 	/**
 	 * recorre la lista y devuelve las posiciones con colores repetidos en tres posiciones seguidas
@@ -29,5 +28,5 @@ public interface Listable {
 	 * @param color
 	 * @return
 	 */
-	public ArrayList<Integer> busquedaColor(Colores color);
+	//public ArrayList<Integer> busquedaColor(Colores color);
 }

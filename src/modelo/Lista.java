@@ -1,16 +1,22 @@
 
 package modelo;
 
+import java.lang.invoke.ConstantCallSite;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
+
+import utiles.Constantes;
 
 public class Lista implements Listable{
 	
 	private LinkedList<Colores> lista = new LinkedList<Colores>();
+	private int monedas;
 	
 	public Lista(LinkedList<Colores> lista){
 		super();
 		this.lista=lista;
+		monedas=0;
 	}
 	
 	
@@ -33,19 +39,32 @@ public class Lista implements Listable{
 	}
 	
 	
-	@Override
-	public int borrarColores(ArrayList<Integer> posiciones) {
-		int monedas=0;
-		
-		for (int i = 0; i < posiciones.size(); i++) {
-			this.lista.remove(posiciones.get(i));
-			monedas++;
-		}
-		
-		
+	
+public int getMonedas() {
 		return monedas;
 	}
 
+
+	public void setMonedas(int monedas) {
+		this.monedas = monedas;
+	}
+
+	@Override
+	public void borrarColores(Colores color){
+		borrarColorLista(color);
+	}
+
+	public void borrarColorLista(Colores color){
+		for (int i = 0; i < Constantes.tamanioLista; i++) {
+			if(lista.get(i).compararColores(color)){
+				lista.remove(i);
+				lista.add(Colores.blanco);
+				this.monedas++;
+				borrarColorLista(color);
+			}
+		}
+	}
+	
 	@Override
 	public ArrayList<Integer> recorrerAutomatico() {
 		 ArrayList<Integer> posiciones = new  ArrayList<Integer>();
@@ -59,19 +78,20 @@ public class Lista implements Listable{
 		}
 		return posiciones;
 	}
-
-	@Override
+	
+	/*@Override
 	public ArrayList<Integer> busquedaColor(Colores color) {
 		
 		ArrayList<Integer> posiciones = new ArrayList<Integer>();
 		
 		for (int i = 0; i < lista.size(); i++) {
-			if(lista.get(i).toString().equals(color.toString())){
+			if(lista.get(i).compararColores(color)){
 				posiciones.add(i);
 			}
 		}
 		return posiciones;
-	}
+	}*/
 
+	
 }
 

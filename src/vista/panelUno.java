@@ -15,7 +15,7 @@ import java.awt.Graphics;
 import java.awt.Color;
 
 public class panelUno extends JPanel {
-	private JTextField textField;
+	private JTextField numeroMonedas;
 	private JTextField txtMensaje;
 	private JPanel cola;
 	private JPanel pilaUno;
@@ -78,12 +78,12 @@ public class panelUno extends JPanel {
 		lblLista.setBounds(49, 244, 67, 25);
 		add(lblLista);
 
-		textField = new JTextField();
-		textField.setFont(new Font("Give You Glory", Font.BOLD | Font.ITALIC, 16));
-		textField.setBounds(103, 398, 171, 25);
-		textField.setEnabled(false);
-		add(textField);
-		textField.setColumns(10);
+		numeroMonedas = new JTextField();
+		numeroMonedas.setForeground(new Color(0,0,102));
+		numeroMonedas.setFont(new Font("Give You Glory", Font.BOLD | Font.ITALIC, 16));
+		numeroMonedas.setBounds(103, 398, 300, 25);
+		numeroMonedas.setEditable(false);
+		add(numeroMonedas);
 
 		lblIconoMonedas = new JLabel("");
 		lblIconoMonedas.setBounds(27, 377, 67, 63);
@@ -95,25 +95,27 @@ public class panelUno extends JPanel {
 		lblIconoMonedas.setIcon(iconoEscalado);
 		add(lblIconoMonedas);
 
-		txtMensaje = new JTextField();
+		/*txtMensaje = new JTextField();
 		txtMensaje.setBounds(376, 400, 334, 40);
 		txtMensaje.setEnabled(false);
 		add(txtMensaje);
-		txtMensaje.setColumns(10);
+		txtMensaje.setColumns(10);*/
 
-	}
-
-	public JTextField getCogerTextField() {
-		return textField;
-	}
-
-	public void setCambiarTextField(JTextField textField) {
-		this.textField = textField;
 	}
 
 	public JTextField getCogerTxtMensaje() {
 		return txtMensaje;
 	}
+
+	public JTextField getCogerNumeroMonedas() {
+		return numeroMonedas;
+	}
+
+
+	public void setCogerNumeroMonedas(JTextField numeroMonedas) {
+		this.numeroMonedas = numeroMonedas;
+	}
+
 
 	public void setCambiarTxtMensaje(JTextField txtMensaje) {
 		this.txtMensaje = txtMensaje;
