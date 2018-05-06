@@ -133,18 +133,21 @@ public class ParaPracticaListaUI extends vistaUI {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(acciones.getDato().getBorrarColor()<Constantes.maxBorrarColor){
 				desplegablePedirColor elegirColor = new desplegablePedirColor();
 				elegirColor.setVisible(true);
 				JComboBox cogerComboBox = elegirColor.getCogerComboBox();
-				cogerComboBox.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						Colores colorParcial = (Colores) cogerComboBox.getSelectedItem();
-						acciones.borrarColor(colorParcial);
-						actualizarTodo();
-						elegirColor.dispose();
-					}
-			});
+					cogerComboBox.addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							Colores colorParcial = (Colores) cogerComboBox.getSelectedItem();
+							acciones.borrarColor(colorParcial);
+							actualizarTodo();
+							elegirColor.dispose();
+						}
+				});
+				}
+				acciones.getDato().setBorrarColor(acciones.getDato().getBorrarColor()+1);
 		}
 		});
 
@@ -169,10 +172,21 @@ public class ParaPracticaListaUI extends vistaUI {
 	 * este método es al que hay que llamar siempre que se de a algún botón
 	 */
 	public void actualizarTodo(){
+		acciones.recorrerAutomatico();
 		acciones.pintarCola(vistaDos.getCogerCentro().getCogerCola());
 		acciones.pintarPilas(vistaDos.getCogerCentro().getCogerPilaUno(), vistaDos.getCogerCentro().getCogerPilaDos());
 		acciones.pintarLista(vistaDos.getCogerCentro().getCogerLista());
 		vistaDos.getCogerCentro().getCogerNumeroMonedas().setText("Numero monedas: "+acciones.getDato().getMonedas());
+		if(acciones.getDato().getMonedas()==Constantes.monedasGanador){
+			vistaFinal.setVisible(true);
+			vistaFinal.getCogerLblSentencia().setText("¡Has ganado!");
+		}
+		else{
+			if(!acciones.getDato().getLista().getLista().get(Constantes.tamanioLista-1).compararColores(Colores.blanco)){
+				vistaFinal.setVisible(true);
+				vistaFinal.getCogerLblSentencia().setText("Perdiste...");
+			}
+		}
 	}
 
 	public Acciones getAcciones() {

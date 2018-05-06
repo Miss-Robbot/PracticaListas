@@ -197,7 +197,6 @@ public class Acciones implements Accionable{
 			etiqueta.setName(""+i);
 			etiqueta.setVisible(true);
 			etiqueta.setBackground(Colores.blanco.getColor());
-			//etiqueta.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 			etiqueta.setOpaque(true);
 			lista.add(etiqueta);
 		}
@@ -236,6 +235,10 @@ public class Acciones implements Accionable{
 		for (int i = 0; i < Constantes.tamanioLista; i++) {
 			lista.getComponent(i).setBackground(dato.getLista().getLista().get(i).getColor());
 		}
+	}
+	
+	public void recorrerAutomatico(){
+		dato.getLista().recorrerListaAutomatico();
 	}
 
 	public Datos getDato() {

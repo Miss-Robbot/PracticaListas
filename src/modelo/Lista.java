@@ -66,32 +66,21 @@ public int getMonedas() {
 	}
 	
 	@Override
-	public ArrayList<Integer> recorrerAutomatico() {
-		 ArrayList<Integer> posiciones = new  ArrayList<Integer>();
-		
-		for (int i = 0; i < lista.size()-3; i++) {
-			if((lista.get(i).equals(lista.get(i+1))) && ((lista.get(i+1))).equals(lista.get(i+2))){
-				posiciones.add(i);
-				posiciones.add(i+1);
-				posiciones.add(i+2);
+	public void recorrerListaAutomatico(){
+		for (int i = 0; i < Constantes.tamanioLista-4; i++) {
+			Colores color= lista.get(i);
+			if(color.compararColores(lista.get(i+1))){
+				if(color.compararColores(lista.get(i+2))){
+					if(color.compararColores(lista.get(i+3))){
+						for (int j = 0; j < 4; j++) {
+							lista.remove(i);
+							lista.add(Colores.blanco);
+							this.monedas++;
+						}
+					}
+				}
 			}
 		}
-		return posiciones;
-	}
-	
-	/*@Override
-	public ArrayList<Integer> busquedaColor(Colores color) {
-		
-		ArrayList<Integer> posiciones = new ArrayList<Integer>();
-		
-		for (int i = 0; i < lista.size(); i++) {
-			if(lista.get(i).compararColores(color)){
-				posiciones.add(i);
-			}
-		}
-		return posiciones;
-	}*/
-
-	
+	}	
 }
 

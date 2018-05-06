@@ -18,15 +18,9 @@ public interface Listable {
 	public void borrarColores(Colores color);
 	
 	/**
-	 * recorre la lista y devuelve las posiciones con colores repetidos en tres posiciones seguidas
+	 * Recorre la lista, borra los colores que estén repetidos cuatro veces y añade las monedas
 	 * @return numero de monedas
 	 */
-	public ArrayList<Integer> recorrerAutomatico();
-	
-	/**
-	 * Busca x color y devuelve las posiciones donde lo encuentra
-	 * @param color
-	 * @return
-	 */
-	//public ArrayList<Integer> busquedaColor(Colores color);
+	public void recorrerListaAutomatico();
+
 }
