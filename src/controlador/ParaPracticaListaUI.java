@@ -150,6 +150,15 @@ public class ParaPracticaListaUI extends vistaUI {
 				acciones.getDato().setBorrarColor(acciones.getDato().getBorrarColor()+1);
 		}
 		});
+		
+		vistaFinal.getCogerBtnReinicio().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				vistaFinal.dispose();
+				vistaDos.dispose();
+			}
+		});
 
 	}
 	
@@ -176,8 +185,8 @@ public class ParaPracticaListaUI extends vistaUI {
 		acciones.pintarCola(vistaDos.getCogerCentro().getCogerCola());
 		acciones.pintarPilas(vistaDos.getCogerCentro().getCogerPilaUno(), vistaDos.getCogerCentro().getCogerPilaDos());
 		acciones.pintarLista(vistaDos.getCogerCentro().getCogerLista());
-		vistaDos.getCogerCentro().getCogerNumeroMonedas().setText("Numero monedas: "+acciones.getDato().getMonedas());
-		if(acciones.getDato().getMonedas()==Constantes.monedasGanador){
+		vistaDos.getCogerCentro().getCogerNumeroMonedas().setText("Numero monedas: "+acciones.getDato().getLista().getMonedas());
+		if(acciones.getDato().getLista().getMonedas()==Constantes.monedasGanador){
 			vistaFinal.setVisible(true);
 			vistaFinal.getCogerLblSentencia().setText("¡Has ganado!");
 		}

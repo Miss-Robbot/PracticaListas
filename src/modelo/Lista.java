@@ -66,21 +66,23 @@ public int getMonedas() {
 	}
 	
 	@Override
-	public void recorrerListaAutomatico(){
+	public int recorrerListaAutomatico(){
+		int contador=0;
 		for (int i = 0; i < Constantes.tamanioLista-4; i++) {
 			Colores color= lista.get(i);
-			if(color.compararColores(lista.get(i+1))){
+			if(color.compararColores(lista.get(i+1)) && !color.compararColores(Colores.blanco)){
 				if(color.compararColores(lista.get(i+2))){
 					if(color.compararColores(lista.get(i+3))){
 						for (int j = 0; j < 4; j++) {
 							lista.remove(i);
 							lista.add(Colores.blanco);
-							this.monedas++;
 						}
+						contador++;
 					}
 				}
 			}
 		}
+		return contador;
 	}	
 }
 

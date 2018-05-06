@@ -17,5 +17,5 @@ public class Constantes {
 	public final static int maxPedirColor=5;
 	public final static int maxBarajarPilas=3;
 	public final static int maxBorrarColor=5;
-	public final static int monedasGanador=5;
+	public final static int monedasGanador=20;
 }

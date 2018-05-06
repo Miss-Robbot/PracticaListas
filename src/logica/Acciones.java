@@ -238,7 +238,9 @@ public class Acciones implements Accionable{
 	}
 	
 	public void recorrerAutomatico(){
-		dato.getLista().recorrerListaAutomatico();
+		int contador=dato.getLista().recorrerListaAutomatico();
+		//dato.setMonedas(dato.getMonedas()+dato.getMonedas()+(contador*4));
+		dato.getLista().setMonedas(dato.getLista().getMonedas()+(contador*4));
 	}
 
 	public Datos getDato() {

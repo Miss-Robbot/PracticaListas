@@ -40,7 +40,7 @@ public class vistaFinal extends JFrame {
 		lblIcono.setBounds(85, 81, 193, 132);
 		getContentPane().add(lblIcono, BorderLayout.CENTER);
 		
-		btnReinicio = new JButton("REINICIAR");
+		btnReinicio = new JButton("SALIR");
 		btnReinicio.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		btnReinicio.setBackground(new Color(153, 204, 255));
 		btnReinicio.setForeground(new Color(0, 0, 102));
@@ -72,11 +72,11 @@ public class vistaFinal extends JFrame {
 		this.lblIcono = lblIcono;
 	}
 
-	public JButton getBtnReinicio() {
+	public JButton getCogerBtnReinicio() {
 		return btnReinicio;
 	}
 
-	public void setBtnReinicio(JButton btnReinicio) {
+	public void setCambiarBtnReinicio(JButton btnReinicio) {
 		this.btnReinicio = btnReinicio;
 	}
 }

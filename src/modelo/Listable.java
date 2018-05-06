@@ -21,6 +21,6 @@ public interface Listable {
 	 * Recorre la lista, borra los colores que estén repetidos cuatro veces y añade las monedas
 	 * @return numero de monedas
 	 */
-	public void recorrerListaAutomatico();
+	public int recorrerListaAutomatico();
 
 }
