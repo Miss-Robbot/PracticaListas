@@ -186,7 +186,7 @@ public class ParaPracticaListaUI extends vistaUI {
 		acciones.pintarPilas(vistaDos.getCogerCentro().getCogerPilaUno(), vistaDos.getCogerCentro().getCogerPilaDos());
 		acciones.pintarLista(vistaDos.getCogerCentro().getCogerLista());
 		vistaDos.getCogerCentro().getCogerNumeroMonedas().setText("Numero monedas: "+acciones.getDato().getLista().getMonedas());
-		if(acciones.getDato().getLista().getMonedas()==Constantes.monedasGanador){
+		if(acciones.getDato().getLista().getMonedas()>=Constantes.monedasGanador){
 			vistaFinal.setVisible(true);
 			vistaFinal.getCogerLblSentencia().setText("¡Has ganado!");
 		}
